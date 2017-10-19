@@ -1,3 +1,2 @@
 print("Goodbye world");
 print("goodbye");
-print("loli");
