@@ -13,8 +13,8 @@
 
 		var stop = 0;
 
-		alert("Вас приветствует бэта-версия бинарного сумматора, который позволяет складывать двоичные числа, содержащие не более 4-х разрядов. Число каждого слогамого требуется вводить по одной цифре, справа на лево, предварительно указав колличество разрядов. Вы можете завершить итерацию в любой момент нажав 'q'.");
-				
+		alert("Вас приветствует бэта-версия бинарного сумматора, который позволяет складывать двоичные числа. Число каждого слогамого требуется вводить по одной цифре, СПРАВА НА ЛЕВО, предварительно указав колличество разрядов. Вы можете завершить итерацию в любой момент нажав 'q'.");
+
 
 		function entry (room_term) {
 		
@@ -27,8 +27,8 @@
 					break;
 				}
 				NumberOfCategories = Number(NumberOfCategories);
-				if(NumberOfCategories <= 0 || NumberOfCategories >= 5 || isNaN(NumberOfCategories)) {
-					alert ("Колличество разрядов должно быть целым числом, от 1 до 4.");		
+				if(NumberOfCategories <= 0 || isNaN(NumberOfCategories)) {
+					alert ("Колличество разрядов должно быть целым положительным числом.");		
 				} else {
 					if(sumNumberOfCategories < NumberOfCategories) {
 						sumNumberOfCategories = NumberOfCategories;
@@ -81,7 +81,7 @@
 
 		var indexCategory = 0;
 		
-		while(indexCategory < sumNumberOfCategories){
+		while(indexCategory < sumNumberOfCategories && stop != 1){
 
 			var Term1 = term1[indexCategory];
 			var Term2 = term2[indexCategory];
@@ -114,20 +114,13 @@
 				sum[indexCategory] = 1;
 				sum[indexCategory + 1] = 1;
 				indexCategory++;
-			}					
-
+			}
 		}
 
 
-		alert(sum.reverse());
-
-
-
-
-
-
-
-			
+		if(stop != 1) {
+			alert("Сумма: " + sum.reverse().join(' '));
+		}			
 		
 	</script>
 </body>
