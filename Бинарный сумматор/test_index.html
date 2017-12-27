@@ -6,72 +6,79 @@
 </head>
 <body>
 	<script type="text/javascript">
-		var category14 = 0; var category13 = 0; var category12 = 0; var category11 = 0;
-		var category24 = 0; var category23 = 0; var category22 = 0; var category21 = 0;
+		//var category14 = 0; var category13 = 0; var category12 = 0; var category11 = 0;
+		//var category24 = 0; var category23 = 0; var category22 = 0; var category21 = 0;
+
+		var term1 = [];
+		var term2 = [];
+
+		var stop = 0;
 
 		alert("Вас приветствует бэта-версия бинарного сумматора, который позволяет складывать двоичные числа, содержащие не более 4-х разрядов. Число каждого слогамого требуется вводить по одной цифре, справа на лево, предварительно указав колличество разрядов. Вы можете завершить итерацию в любой момент нажав 'q'.");
 
 		
 
-		function entry (room_term){
+		function entry (room_term) {
 		
 			var NumberOfCategories = 0;
 
 			while(true) {
 				NumberOfCategories = prompt("Введите количество разрядов "+room_term+" слагаемого:");		
 				if (NumberOfCategories == 'q') {
+					stop = 1;
 					break;
 				}
 				NumberOfCategories = Number(NumberOfCategories);
-				if(NumberOfCategories<=0 || NumberOfCategories>5 || isNaN(NumberOfCategories)) {
+				if(NumberOfCategories <= 0 || NumberOfCategories >= 5 || isNaN(NumberOfCategories)) {
 					alert ("Колличество разрядов должно быть целым числом, от 1 до 4.");		
 				} else {
 					break;
 				}			
-			}			 	
-
-			if (NumberOfCategories > 0) {
-				category1 = Processed_Category(1);
-			}
-
-			if (NumberOfCategories > 1) {
-				category2 = Processed_Category(2);
-			} else {
-				return category1;
 			}			
 
-			if(NumberOfCategories > 2){
-				category3 = Processed_Category(3);
-			} else { 
-				return [category1, category2];
-			}	
-
-			if(NumberOfCategories > 3){
-				category4 = Processed_Category(4);
-				return [category1, category2, category3, category4];
-			} else {
-				return [category1, category2, category3];
-			}
-
-			function Processed_Category (namber_processed_category) {
-				while(true) {
-					processed_category = prompt("Введите число из разряда №" + namber_processed_category);
-					if (processed_category == 'q') {
+			if(room_term == "первого") {
+				var indexCategory = 0;
+				while(indexCategory < NumberOfCategories) {
+					term1[indexCategory] = prompt("Введите число из разряда №" + (indexCategory + 1));
+					if (term1[indexCategory] == 'q') {
+						stop = 1;
 						break;				
 					}
-					processed_category = Number(processed_category);
-					if ((typeof processed_category == "number") && (processed_category == 0 || processed_category == 1)) {
-						break;
+					term1[indexCategory] = Number(term1[indexCategory]);
+					if ((typeof term1[indexCategory] == "number") && (term1[indexCategory] == 0 || term1[indexCategory] == 1)) {
+						indexCategory++;						
 					} else {
 						alert ("Данные вне формата")
 					}
 				}
-				return processed_category;
-			}
+
+			} else {
+				var indexCategory = 0;
+				while(indexCategory < NumberOfCategories) {
+					term2[indexCategory] = prompt("Введите число из разряда №" + (indexCategory + 1));
+					if (term2[indexCategory] == 'q') {
+						stop = 1;
+						break;				
+					}
+					term2[indexCategory] = Number(term2[indexCategory]);
+					if ((typeof term2[indexCategory] == "number") && (term2[indexCategory] == 0 || term2[indexCategory] == 1)) {
+						indexCategory++;						
+					} else {
+						alert ("Данные вне формата")
+					}
+				}
+			}			
 		}
 
+
 		entry ("первого");
-		entry ("второго"); 	
+		if(stop != 1) {
+			entry ("второго");
+		}
+
+
+
+
 
 
 
