@@ -14,8 +14,7 @@
 		var stop = 0;
 
 		alert("Вас приветствует бэта-версия бинарного сумматора, который позволяет складывать двоичные числа, содержащие не более 4-х разрядов. Число каждого слогамого требуется вводить по одной цифре, справа на лево, предварительно указав колличество разрядов. Вы можете завершить итерацию в любой момент нажав 'q'.");
-
-		
+				
 
 		function entry (room_term) {
 		
@@ -72,6 +71,7 @@
 			}			
 		}
 
+
 		var sumNumberOfCategories = 0;
 
 		entry ("первого");
@@ -82,26 +82,42 @@
 		var indexCategory = 0;
 		
 		while(indexCategory < sumNumberOfCategories){
-			if(term1[indexCategory] + term2[indexCategory] + sum[indexCategory] == 0) {
+
+			var Term1 = term1[indexCategory];
+			var Term2 = term2[indexCategory];
+			var Sum = sum[indexCategory];
+			if(Term1 === undefined) {
+				Term1 = 0;
+			}
+			if(Term2 === undefined) {
+				Term2 = 0;
+			}
+			if(Sum === undefined) {
+				Sum = 0;
+			}
+			var sumCategories = Term1 + Term2 + Sum;
+
+			if(sumCategories == 0) {
 				sum[indexCategory] = 0;
 				indexCategory++;
 			}
-			if(term1[indexCategory] + term2[indexCategory] + sum[indexCategory] == 1) {
+			if(sumCategories == 1) {
 				sum[indexCategory] = 1;
 				indexCategory++;
 			}
-			if(term1[indexCategory] + term2[indexCategory] + sum[indexCategory] == 2) {
+			if(sumCategories == 2) {
 				sum[indexCategory] = 0;
 				sum[indexCategory + 1] = 1;
 				indexCategory++;
 			}
-			if(term1[indexCategory] + term2[indexCategory] + sum[indexCategory] == 3) {
+			if(sumCategories == 3) {
 				sum[indexCategory] = 1;
 				sum[indexCategory + 1] = 1;
 				indexCategory++;
 			}					
 
 		}
+
 
 		alert(sum.reverse());
 
