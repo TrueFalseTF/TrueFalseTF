@@ -5,12 +5,11 @@
 	<title>Бэта - Бинарный сумматор</title>
 </head>
 <body>
-	<script type="text/javascript">
-		//var category14 = 0; var category13 = 0; var category12 = 0; var category11 = 0;
-		//var category24 = 0; var category23 = 0; var category22 = 0; var category21 = 0;
+	<script type="text/javascript">		
 
 		var term1 = [];
 		var term2 = [];
+		var sum = [];
 
 		var stop = 0;
 
@@ -32,6 +31,9 @@
 				if(NumberOfCategories <= 0 || NumberOfCategories >= 5 || isNaN(NumberOfCategories)) {
 					alert ("Колличество разрядов должно быть целым числом, от 1 до 4.");		
 				} else {
+					if(sumNumberOfCategories < NumberOfCategories) {
+						sumNumberOfCategories = NumberOfCategories;
+					}					
 					break;
 				}			
 			}			
@@ -70,11 +72,38 @@
 			}			
 		}
 
+		var sumNumberOfCategories = 0;
 
 		entry ("первого");
 		if(stop != 1) {
 			entry ("второго");
 		}
+
+		var indexCategory = 0;
+		
+		while(indexCategory < sumNumberOfCategories){
+			if(term1[indexCategory] + term2[indexCategory] + sum[indexCategory] == 0) {
+				sum[indexCategory] = 0;
+				indexCategory++;
+			}
+			if(term1[indexCategory] + term2[indexCategory] + sum[indexCategory] == 1) {
+				sum[indexCategory] = 1;
+				indexCategory++;
+			}
+			if(term1[indexCategory] + term2[indexCategory] + sum[indexCategory] == 2) {
+				sum[indexCategory] = 0;
+				sum[indexCategory + 1] = 1;
+				indexCategory++;
+			}
+			if(term1[indexCategory] + term2[indexCategory] + sum[indexCategory] == 3) {
+				sum[indexCategory] = 1;
+				sum[indexCategory + 1] = 1;
+				indexCategory++;
+			}					
+
+		}
+
+		alert(sum.reverse());
 
 
 
