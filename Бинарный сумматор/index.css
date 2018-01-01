@@ -3,8 +3,13 @@
 
 body {
 	min-height:	90vh;	
-    background-color: #f7f7f7;
+    background-color: #8B8B8B;
     font-family: 'Spectral SC', serif;
+}
+
+input {
+	padding: 0.3em 5px;
+	font-size: 18px;
 }
 
 .header {
@@ -15,18 +20,22 @@ body {
 }
 
 .content {
-	
-
 	min-height: 70vh;	
-	
 	margin: 10px 20px 10px 20px;
 	border: 4px solid #B9B9B9;
-	border-radius: 400px/70px;	
+	border-radius: 400px/70px;
+	background-color: #f7f7f7;
+	font-size: 18px
 
 }
 
 .summand {
 	min-height: 41vh;
+
+}
+
+.summand p {
+	-webkit-margin-after: 0.5em ;
 
 }
 
@@ -53,10 +62,19 @@ body {
 }
 
 .results a {
-	height: 10px;
-	width: 30px;
-	border-color: #A15050;
+	padding: 0.8em 20px;
+	background-color: #794B4B;
+	border-radius: 70px/55px 0px ;
+	  	
 
+}
+
+.results a:hover {	
+	background-color: #A15050;
+}
+
+#answer_results {
+	color: #794B4B;
 }
 
 .footer {
