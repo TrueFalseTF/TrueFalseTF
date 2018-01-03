@@ -40,6 +40,10 @@ input {
 
 }
 
+.summand input {
+	background-color: #D09696;
+}
+
 .summand_N {
 
 }
@@ -59,15 +63,12 @@ input {
 
 .results {
 	text-align: center;
-
 }
 
 .results a {
 	padding: 0.8em 20px;
 	background-color: #794B4B;
 	border-radius: 70px/55px 0px ;
-	  	
-
 }
 
 .results a:hover {	
@@ -75,14 +76,13 @@ input {
 }
 
 #answer_results {
-	color: #794B4B;
+
+	font-family: 'Arial';
+	font-weight: 600;
 }
 
-.footer {
-
-	
+.footer {	
 	margin-top: 60px;
     margin-bottom: 10px;
-	text-align: right;
-	
+	text-align: right;	
 }

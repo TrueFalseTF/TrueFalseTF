@@ -1,67 +1,78 @@
 		var term1 = [];
 		var term2 = [];
 		var sum = [];
-		
-			/*if(NumberOfCategories <= 0 || isNaN(NumberOfCategories)) 		
-				
-					term1[indexCategory] = Number(term1[indexCategory]);
-					if ((typeof term1[indexCategory] == "number") && (term1[indexCategory] == 0 || term1[indexCategory] == 1)) {
-						indexCategory++;						
-					} else {
-						alert ("Данные вне формата")
-					}
-				}*/
-
-
-
+		var stop = false;
 		var sumNumberOfCategories = 0;
 		var indexCategory = 0;
 
-		function reduction(term) {
-			//преобразовать в массив
+		function reduction(term) {			
 			var Term = term;
 			var Terms = [];
 			var termNumberOfCategories = 0;
 			var indexRemainder = Term;
-			while(indexRemainder > 0) {
+
+			if(Term == 0 || Term === undefined) {
+				Terms = [0];
+				termNumberOfCategories++;
+			}
+
+			while(indexRemainder >= 1) {
 				indexRemainder /= 10;
 				termNumberOfCategories++;
 			}
 
-			if(termNumbersOfCategories > sumNumberOfCategories) {
+			if(termNumberOfCategories > sumNumberOfCategories) {
 				sumNumberOfCategories = termNumberOfCategories
 			}
 
-			while(indexCategory <= termNumberOfCategories){
-				Terms[indexCaterory] = Term % 10;
-				Term /= 10;
+			while(indexCategory < termNumberOfCategories) {
+				Terms[indexCategory] = Term % 10;
+				Term = Math.floor(Term / 10);
 				indexCategory++;
 			}
+			indexCategory = 0;
 
 
-			indexCategory = 0; 
-			
-			while(indexCategory < term.langth) {				 
-				if(term[indexCategory] != 0 && term[indexCategory] != 1) {
-					document.getElementById("answer_results").inerHtml = "Введите корректные данные";
+			if(indexCategory == Terms.length) {
+					document.getElementById("answer_results").innerHTML = "Введите корректные данные";
+					stop = true;
+			}
+
+			while(indexCategory < Terms.length) {				 
+				if(Terms[indexCategory] != 0 && Terms[indexCategory] != 1) {
+					document.getElementById("answer_results").innerHTML = "Введите корректные данные";
+					stop = true;
+					break;					
 				}
 				indexCategory++;
 			}
 			indexCategory = 0;
 
-			Terms.reverse();
-
+			if(stop != true) {
+				return Terms;
+			}
 		}
 
 		function entry() {
-			var Term1 += document.getElementById("s1").value;
-			var Term2 += document.getElementById("s2").value;
+			term1 = [];
+			term2 = [];
+			sum = [];
+			stop = false;
+			sumNumberOfCategories = 0;
+			indexCategory = 0;
+
+			var Term1 = +document.getElementById("s1").value;
+			var Term2 = +document.getElementById("s2").value;
 
 			term1 = reduction(Term1);
 			term2 = reduction(Term2);
 		}		
 
-		function calculation() {			
+		function calculation() {
+			if(stop === true) {				
+				return;
+			}
+
 			while(indexCategory < sumNumberOfCategories) {
 
 				var Term1 = term1[indexCategory];
@@ -97,7 +108,9 @@
 					indexCategory++;
 				}
 			}
-			document.getelementById("answer_results").inerHtml = sum.reverse().join("");
+
+			document.getElementById("answer_results").innerHTML = sum.reverse().join("");
+						
 		}
 
 
